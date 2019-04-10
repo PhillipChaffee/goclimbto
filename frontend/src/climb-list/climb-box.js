@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ClimbList extends Component {
+class ClimbBox extends Component {
     render() {
         return (
             <div class='box'>
@@ -13,9 +13,7 @@ class ClimbList extends Component {
                     <div class='column'>
                         <div class='content'>
                             <p>
-                                <strong>Crazy Climb</strong> <i class='fas fa-map-pin' />
-                                <small>Media, PA</small> <i class='fas fa-hand-rock' />
-                                <small>V8/6C+</small>
+                                <strong>Crazy Climb</strong> <i class='fas fa-map-pin' /> <small>Media, PA</small> <i class='fas fa-hand-rock' />  <small>V8/6C+</small>
                                 <br />
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
                                 efficitur sit amet massa fringilla egestas. Nullam condimentum
@@ -31,8 +29,7 @@ class ClimbList extends Component {
                         </div>
                     </div>
                 </div>
-            </div>);
+            </div>
+        );
     }
 }
-
-export default ClimbList;
