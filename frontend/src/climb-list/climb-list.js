@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import ClimbBox from './climb-box';
+import ClimbModal from './climb-modal';
 
 class ClimbList extends Component {
     constructor(props) {
         super(props);
-        this.state = { climbs: [] };
-    }
+        this.state = {
+            climbs: [{ Name: "Crazy Climb", Location: "Media, PA", Grade: "V8/6C+" },
+            { Name: "Crazy Climb 2", Location: "Media, PA", Grade: "V10/7B" }]
+        }
+    };
+
 
     render() {
         const items = []
 
         for (const climb of this.state.climbs) {
-            items.push(<Element key={index} />)
+            items.push(<ClimbBox name={climb.Name} location={climb.Location} grade={climb.Grade} />)
         }
 
         return (
@@ -30,8 +35,10 @@ class ClimbList extends Component {
                             <a class="button is-pulled-right">+</a>
                         </div>
                     </div>
-                    <div id="climbs"></div>
+                    <div id="climbs">{items}</div>
                 </div>
+
+                <ClimbModal open={this.state.modalIsOpen} />
             </section>
         );
     }
