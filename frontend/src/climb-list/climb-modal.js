@@ -8,7 +8,7 @@ class ClimbModal extends Component {
                 <div className="modal-content">
                     Hello
                 </div>
-                <button className="modal-close is-large" aria-label="close"></button>
+                <button className="modal-close is-large" aria-label="close" onClick={this.props.close}></button>
             </div>
         );
     }

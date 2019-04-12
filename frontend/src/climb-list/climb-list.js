@@ -2,28 +2,32 @@ import React, { Component } from 'react';
 import ClimbBox from './climb-box';
 import ClimbModal from './climb-modal';
 
-function openModal(modals) {
-
-}
-
 class ClimbList extends Component {
     constructor(props) {
         super(props);
+
+        this.closeModal = this.closeModal.bind(this);
+
         this.state = {
             climbs: [{ Name: "Crazy Climb", Location: "Media, PA", Grade: "V8/6C+", Active: "" }],
             climbModals: []
         }
-
-        for (const climb of this.state.climbs) {
-            this.state.climbModals.push(<ClimbModal climb={climb} onClick={openModal(this.state.climbModals)} />)
-        }
     };
 
-    render() {
-        const items = [];
+    openModal(climb) {
+        this.setState({climbModals: <ClimbModal climb={climb} active="is-active" close={this.closeModal} />});
+    }
 
-        for (const climb of this.state.climbs) {
-            items.push(<ClimbBox name={climb.Name} location={climb.Location} grade={climb.Grade} />)
+    closeModal() {
+        this.setState({climbModals: []});
+        console.log("Modal closed");
+    }
+
+    render() {
+        let climbs = [];
+
+        for(let climb of this.state.climbs){
+            climbs.push(<ClimbBox name={climb.Name} location={climb.Location} grade={climb.Grade} onClick={() => this.openModal(climb)}/>);
         }
 
         return (
@@ -42,7 +46,7 @@ class ClimbList extends Component {
                             <a className="button is-pulled-right">+</a>
                         </div>
                     </div>
-                    <div id="climbs">{items}</div>
+                    <div id="climbs">{climbs}</div>
                 </div>
 
                 {this.state.climbModals}
