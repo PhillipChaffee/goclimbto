@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ClimbBox extends Component {
     render() {
         return (
-            <div className='box' onClick={this.props.onClick}>
+            <div className='box' onClick={() => this.props.onClick(this.props.climb)}>
                 <div className='columns'>
                     <div className='column is-2'>
                         <figure className='image is-4by3'>
@@ -13,7 +13,7 @@ class ClimbBox extends Component {
                     <div className='column'>
                         <div className='content'>
                             <p>
-                                <strong>{this.props.name}</strong> <i className='fas fa-map-pin' /> <small>{this.props.location}</small> <i className='fas fa-hand-rock' />  <small>{this.props.grade}</small>
+                                <strong>{this.props.climb.Name}</strong> <i className='fas fa-map-pin' /> <small>{this.props.climb.Location}</small> <i className='fas fa-hand-rock' />  <small>{this.props.climb.Grade}</small>
                                 <br />
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
                                 efficitur sit amet massa fringilla egestas. Nullam condimentum

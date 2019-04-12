@@ -6,28 +6,29 @@ class ClimbList extends Component {
     constructor(props) {
         super(props);
 
+        this.emptyModal = <ClimbModal climb={{}} active="" close={() => {}} />;
+        this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
 
         this.state = {
             climbs: [{ Name: "Crazy Climb", Location: "Media, PA", Grade: "V8/6C+", Active: "" }],
-            climbModals: []
+            climbModal: this.emptyModal
         }
     };
 
     openModal(climb) {
-        this.setState({climbModals: <ClimbModal climb={climb} active="is-active" close={this.closeModal} />});
+        this.setState({ climbModal: <ClimbModal climb={climb} active="is-active" close={this.closeModal} /> });
     }
 
     closeModal() {
-        this.setState({climbModals: []});
-        console.log("Modal closed");
+        this.setState({ climbModal: this.emptyModal });
     }
 
     render() {
         let climbs = [];
 
-        for(let climb of this.state.climbs){
-            climbs.push(<ClimbBox name={climb.Name} location={climb.Location} grade={climb.Grade} onClick={() => this.openModal(climb)}/>);
+        for (let climb of this.state.climbs) {
+            climbs.push(<ClimbBox climb={climb} onClick={this.openModal} />);
         }
 
         return (
@@ -49,7 +50,7 @@ class ClimbList extends Component {
                     <div id="climbs">{climbs}</div>
                 </div>
 
-                {this.state.climbModals}
+                {this.state.climbModal}
             </section>
         );
     }
