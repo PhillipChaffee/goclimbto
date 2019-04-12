@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 
 class ClimbModal extends Component {
     render() {
-        if(!this.props.open) {
-            return null;
-          }
-
         return (
-            <div class="modal">
-                <div class="modal-background"></div>
-                <div class="modal-content">
+            <div className={`modal ${this.props.active}`}>
+                <div className="modal-background"></div>
+                <div className="modal-content">
+                    Hello
                 </div>
-                <button class="modal-close is-large" aria-label="close"></button>
+                <button className="modal-close is-large" aria-label="close"></button>
             </div>
         );
     }

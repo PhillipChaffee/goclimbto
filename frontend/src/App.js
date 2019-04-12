@@ -6,9 +6,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <section class="section">
-          <div class="container has-text-centered">
-            <h1 class="title is-1">Go Climbing To</h1>
+        <section className="section">
+          <div className="container has-text-centered">
+            <h1 className="title is-1">Go Climbing To</h1>
           </div>
         </section>
         <ClimbList />
