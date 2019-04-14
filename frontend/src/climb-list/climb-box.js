@@ -6,6 +6,8 @@ class ClimbBox extends Component {
             return null;
         }
 
+        console.log(this.props.climb);
+
         return (
             <div className='tile box has-text-white' style={{ backgroundImage: 'url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Frereno2.files.wordpress.com%2F2014%2F09%2Fboulder.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} onClick={() => this.props.onClick(this.props.climb)}>
                 <div className="content">

@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import ClimbBox from './climb-box';
 import ClimbModal from './climb-modal';
+import AddClimbModal from './add-climb-modal';
 import { unwatchFile } from 'fs';
 
 class ClimbList extends Component {
     constructor(props) {
         super(props);
 
-        this.emptyModal = <ClimbModal active="" close={() => { }} />;
+        this.emptyClimbModal = <ClimbModal active="" close={() => { }} />;
+        this.emptyAddModal = <AddClimbModal active="" close={() => { }} />;
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
 
         this.state = {
-            climbs: [],
-            climbModal: this.emptyModal
+            climbBoxes: [],
+            climbModal: this.emptyClimbModal,
+            addModal: this.emptyAddModal
         }
     };
 
@@ -22,8 +25,20 @@ class ClimbList extends Component {
             headers: { 'Access-Control-Allow-Origin': 'http://localhost:63547' }
         }).then(response => response.json())
             .then(data => {
-                if (data) {
-                    this.setState({ climbs: data })
+                if (data.length != 0) {
+                    let climbs = data.slice();
+                    let climbBoxes = [];
+                    let perColumn = climbs.length / 4;
+                    for (var i = 0; i < 4; i++) {
+                        var inCurrentColumn = 0;
+                        climbBoxes[i] = [];
+                        while (inCurrentColumn < perColumn) {
+                            climbBoxes[i].push(<ClimbBox climb={climbs.shift()} onClick={this.openModal} />)
+                            inCurrentColumn++;
+                        }
+                    }
+
+                    this.setState({ climbBoxes: climbBoxes });
                 }
             })
             .catch((error) => {
@@ -33,32 +48,23 @@ class ClimbList extends Component {
     }
 
     openModal(climb) {
-        this.setState({ climbModal: <ClimbModal climb={climb} active="is-active" close={this.closeModal} /> });
+        if (climb) {
+            this.setState({ climbModal: <ClimbModal climb={climb} active="is-active" close={this.closeModal} /> });
+        } else {
+            this.setState({ addModal: <AddClimbModal active="is-active" close={this.closeModal} /> })
+        }
     }
 
     closeModal() {
-        this.setState({ climbModal: this.emptyModal });
+        this.setState({ climbModal: this.emptyClimbModal, addModal: this.emptyAddModal });
     }
 
     render() {
-        let climbs = this.state.climbs;
-        let climbBoxes = [];
-
-        if (this.state.climbs) {
-            let perColumn = this.state.climbs.length / 4;
-            var inCurrentColumn = 0;
-            for (var i = 0; i < 4; i++) {
-                climbBoxes[i] = [];
-                while (inCurrentColumn <= perColumn) {
-                    climbBoxes[i].push(<ClimbBox climb={climbs.shift()} onClick={this.openModal} />)
-                    inCurrentColumn++;
-                }
-            }
-
-            console.log(climbBoxes);
-        } else {
+        if (this.state.climbBoxes.length == 0) {
             return null;
         }
+
+        let climbBoxes = this.state.climbBoxes;
 
         return (
             <section className="section">
@@ -77,6 +83,10 @@ class ClimbList extends Component {
                         </div>
                     </div>
                     <div className="columns">
+                        <div className="column">{climbBoxes[0]}</div>
+                        <div className="column">{climbBoxes[1]}</div>
+                        <div className="column">{climbBoxes[2]}</div>
+                        <div className="column">{climbBoxes[3]}</div>
                     </div>
                 </div>
 

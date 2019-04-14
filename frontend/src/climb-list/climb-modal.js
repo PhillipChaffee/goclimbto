@@ -28,18 +28,20 @@ class ClimbModal extends Component {
                                         <div className="columns">
                                             <div className="column">
                                                 <table className="table">
-                                                    <tr>
-                                                        <td>Location</td>
-                                                        <td>{climb.location.city}, {climb.location.state}, {climb.location.country}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Grade</td>
-                                                        <td>{climb.grade}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Rating</td>
-                                                        <td>{climb.rating}/5</td>
-                                                    </tr>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Location</td>
+                                                            <td>{climb.location.city}, {climb.location.state}, {climb.location.country}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Grade</td>
+                                                            <td>{climb.grade}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Rating</td>
+                                                            <td>{climb.rating}/5</td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
