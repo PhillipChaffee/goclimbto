@@ -28,6 +28,15 @@ namespace backend
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("_myAllowSpecificOrigins",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
+
             //Swagger
             services.AddSwaggerGen(c =>
             {
@@ -45,7 +54,10 @@ namespace backend
             else
             {
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
+
+            app.UseCors("_myAllowSpecificOrigins");
 
             //Swagger
             app.UseSwagger();
@@ -55,7 +67,6 @@ namespace backend
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import ClimbBox from './climb-box';
 import ClimbModal from './climb-modal';
+import { unwatchFile } from 'fs';
 
 class ClimbList extends Component {
     constructor(props) {
         super(props);
 
-        this.emptyModal = <ClimbModal climb={{}} active="" close={() => {}} />;
+        this.emptyModal = <ClimbModal active="" close={() => { }} />;
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
 
         this.state = {
-            climbs: [{ Name: "Crazy Climb", Location: "Media, PA", Grade: "V8/6C+", Active: "" }],
+            climbs: [],
             climbModal: this.emptyModal
         }
     };
+
+    componentDidMount() {
+        fetch("http://localhost:63547/api/v1/Climbs", {
+            headers: { 'Access-Control-Allow-Origin': 'http://localhost:63547' }
+        }).then(response => response.json())
+            .then(data => {
+                if (data) {
+                    this.setState({ climbs: data })
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            });
+    }
 
     openModal(climb) {
         this.setState({ climbModal: <ClimbModal climb={climb} active="is-active" close={this.closeModal} /> });
@@ -25,10 +41,23 @@ class ClimbList extends Component {
     }
 
     render() {
-        let climbs = [];
+        let climbs = this.state.climbs;
+        let climbBoxes = [];
 
-        for (let climb of this.state.climbs) {
-            climbs.push(<ClimbBox climb={climb} onClick={this.openModal} />);
+        if (this.state.climbs) {
+            let perColumn = this.state.climbs.length / 4;
+            var inCurrentColumn = 0;
+            for (var i = 0; i < 4; i++) {
+                climbBoxes[i] = [];
+                while (inCurrentColumn <= perColumn) {
+                    climbBoxes[i].push(<ClimbBox climb={climbs.shift()} onClick={this.openModal} />)
+                    inCurrentColumn++;
+                }
+            }
+
+            console.log(climbBoxes);
+        } else {
+            return null;
         }
 
         return (
@@ -47,7 +76,8 @@ class ClimbList extends Component {
                             <a className="button is-pulled-right">+</a>
                         </div>
                     </div>
-                    <div id="climbs">{climbs}</div>
+                    <div className="columns">
+                    </div>
                 </div>
 
                 {this.state.climbModal}

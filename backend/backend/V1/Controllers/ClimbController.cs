@@ -11,7 +11,39 @@ namespace backend.V1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Climb>> GetClimbs()
         {
-            return Ok(new List<Climb> { new Climb { Description = "sadkjgfhsadf", Grade = Grade.V0, Name = "DaClimb" } });
+            return Ok(new List<Climb> { new Climb
+            {
+                Notes = "This climb will bust your butt.",
+                Grade = Grade.V7,
+                Name = "Butt Buster",
+                Location = new Location{Country = "United State", State = "PA", City = "Media"},
+                Rating = 4,
+                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
+            },new Climb
+            {
+                Notes = "This climb will bust your butt.",
+                Grade = Grade.V7,
+                Name = "Butt Buster",
+                Location = new Location{Country = "United State", State = "PA", City = "Media"},
+                Rating = 4,
+                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
+            },new Climb
+            {
+                Notes = "This climb will bust your butt.",
+                Grade = Grade.V7,
+                Name = "Butt Buster",
+                Location = new Location{Country = "United State", State = "PA", City = "Media"},
+                Rating = 4,
+                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
+            },new Climb
+            {
+                Notes = "This climb will bust your butt.",
+                Grade = Grade.V7,
+                Name = "Butt Buster",
+                Location = new Location{Country = "United State", State = "PA", City = "Media"},
+                Rating = 4,
+                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
+            } });
         }
     }
 }

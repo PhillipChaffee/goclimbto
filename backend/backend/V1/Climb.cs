@@ -9,8 +9,10 @@ namespace backend.V1
     {
         public string Name { get; set; }
         public Location Location { get; set; }
+        public Coordinate Coordinates { get; set; } 
         public string Grade { get; set; }
-        public string Description { get; set; }
+        public decimal Rating { get; set; }
+        public string Notes { get; set; }
         public Uri ImageLocation { get; set; }
     }
 }

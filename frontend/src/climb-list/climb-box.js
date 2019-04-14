@@ -2,32 +2,16 @@ import React, { Component } from 'react';
 
 class ClimbBox extends Component {
     render() {
+        if (!this.props.climb) {
+            return null;
+        }
+
         return (
-            <div className='box' onClick={() => this.props.onClick(this.props.climb)}>
-                <div className='columns'>
-                    <div className='column is-2'>
-                        <figure className='image is-4by3'>
-                            <img src='https://bulma.io/images/placeholders/256x256.png' />
-                        </figure>
-                    </div>
-                    <div className='column'>
-                        <div className='content'>
-                            <p>
-                                <strong>{this.props.climb.Name}</strong> <i className='fas fa-map-pin' /> <small>{this.props.climb.Location}</small> <i className='fas fa-hand-rock' />  <small>{this.props.climb.Grade}</small>
-                                <br />
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                                efficitur sit amet massa fringilla egestas. Nullam condimentum
-                                luctus turpis. Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Aenean efficitur sit amet massa fringilla
-                                egestas. Nullam condimentum luctus turpis. Lorem ipsum dolor sit
-                                amet, consectetur adipiscing elit. Aenean efficitur sit amet
-                                massa fringilla egestas. Nullam condimentum luctus turpis. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                                efficitur sit amet massa fringilla egestas. Nullam condimentum
-                                luctus turpis.
-              </p>
-                        </div>
-                    </div>
+            <div className='tile box has-text-white' style={{ backgroundImage: 'url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Frereno2.files.wordpress.com%2F2014%2F09%2Fboulder.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} onClick={() => this.props.onClick(this.props.climb)}>
+                <div className="content">
+                    <p className="is-size-3">{this.props.climb.name}</p>
+                    <p><i className='fas fa-map-pin' /> {this.props.climb.location.city}, {this.props.climb.location.state}, {this.props.climb.location.country}</p>
+                    <p><i className='fas fa-hand-rock' /> {this.props.climb.grade}</p>
                 </div>
             </div>
         );
