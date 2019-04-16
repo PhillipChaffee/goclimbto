@@ -23,7 +23,7 @@ namespace backend.V1.Controllers
             {
                 Notes = "This climb will bust your butt.",
                 Grade = Grade.V7,
-                Name = "Butt Buster",
+                Name = "Butt Whacker",
                 Location = new Location{Country = "United State", State = "PA", City = "Media"},
                 Rating = 4,
                 Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
@@ -31,7 +31,7 @@ namespace backend.V1.Controllers
             {
                 Notes = "This climb will bust your butt.",
                 Grade = Grade.V7,
-                Name = "Butt Buster",
+                Name = "Ass Buster",
                 Location = new Location{Country = "United State", State = "PA", City = "Media"},
                 Rating = 4,
                 Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
@@ -39,7 +39,7 @@ namespace backend.V1.Controllers
             {
                 Notes = "This climb will bust your butt.",
                 Grade = Grade.V7,
-                Name = "Butt Buster",
+                Name = "Supa Climb",
                 Location = new Location{Country = "United State", State = "PA", City = "Media"},
                 Rating = 4,
                 Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
