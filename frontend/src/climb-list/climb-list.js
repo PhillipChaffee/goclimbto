@@ -118,7 +118,7 @@ class ClimbList extends Component {
                             </div>
                         </div>
                         <div className="column is-1 is-offset-7">
-                            <a className="button is-pulled-right">+</a>
+                            <a className="button is-pulled-right" onClick={() => this.openModal(null)}>+</a>
                         </div>
                     </div>
                     <div className="columns">
@@ -130,6 +130,7 @@ class ClimbList extends Component {
                 </div>
 
                 {this.state.climbModal}
+                {this.state.addModal}
             </section>
         );
     }

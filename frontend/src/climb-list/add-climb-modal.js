@@ -7,14 +7,36 @@ class AddClimbModal extends Component {
                 <div className="modal-background" onClick={this.props.close}></div>
                 <div className="modal-content">
                     <div className="card">
-                        <div className="card-image">
-                            <figure className="image is-4by3">
-                                <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Frereno2.files.wordpress.com%2F2014%2F09%2Fboulder.jpg" alt="Placeholder image" />
-                            </figure>
-                        </div>
+                        <header class="card-header">
+                            <p class="card-header-title">Add a climb</p>
+                        </header>
                         <div className="card-content">
-                            <div className="title">Test</div>
-                            <p className="subtitle"><a className="is-size-6" href="https://goo.gl/maps/5EuigxL4tgF2" target="new">39°55'07.4"N 75°23'49.6"W</a></p>
+                            <label htmlFor="name">Climb Name</label>
+                            <input id="name" className="input" type="text" placeholder="ex. The Mandala" />
+                            <label htmlFor="lat">Latitude/Longitude</label>
+                            <input id="lat" className="input" type="text" placeholder="ex. 39°55'07.4N 75°23'49.6W" />
+                            <label htmlFor="location">Location</label>
+                            <div id="location" className="columns">
+                                <div className="column">
+                                    <input className="input" type="text" placeholder="Country" />
+                                </div>
+                                <div className="column">
+                                    <input className="input" type="text" placeholder="State" />
+                                </div>
+                                <div className="column">
+                                    <input className="input" type="text" placeholder="City" />
+                                </div>
+                            </div>
+                            Rating
+                            <div id="grade" class="select">
+                                <select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
