@@ -98,13 +98,7 @@ class ClimbList extends Component {
         this.setState({ climbModal: this.emptyClimbModal, addModal: this.emptyAddModal });
     }
 
-    render() {
-        if (this.state.climbBoxes.length == 0) {
-            return null;
-        }
-
-        let climbBoxes = this.state.climbBoxes;
-
+    mainLayout(climbs) {
         return (
             <section className="section">
                 <div className="container">
@@ -121,17 +115,30 @@ class ClimbList extends Component {
                             <a className="button is-pulled-right" onClick={() => this.openModal(null)}>+</a>
                         </div>
                     </div>
-                    <div className="columns">
-                        <div className="column">{climbBoxes[0]}</div>
-                        <div className="column">{climbBoxes[1]}</div>
-                        <div className="column">{climbBoxes[2]}</div>
-                        <div className="column">{climbBoxes[3]}</div>
-                    </div>
+                    {climbs}
                 </div>
 
                 {this.state.climbModal}
                 {this.state.addModal}
             </section>
+        );
+    }
+
+    render() {
+        if (this.state.climbBoxes.length == 0) {
+            this.mainLayout(null);
+        }
+
+        let climbBoxes = this.state.climbBoxes;
+        let climbs = <div className="columns">
+            <div className="column">{climbBoxes[0]}</div>
+            <div className="column">{climbBoxes[1]}</div>
+            <div className="column">{climbBoxes[2]}</div>
+            <div className="column">{climbBoxes[3]}</div>
+        </div>;
+
+        return (
+            this.mainLayout(climbs)
         );
     }
 }
