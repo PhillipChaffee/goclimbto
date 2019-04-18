@@ -70,7 +70,7 @@ class ClimbList extends Component {
                 }
             }
 
-            if (matches > 0) {
+            if (matches >= terms.length) {
                 results.push({ matches: matches, climb: climb });
             }
         }

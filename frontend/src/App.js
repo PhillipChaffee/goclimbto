@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ClimbList from './climb-list/climb-list'
+import ClimbList from './components/climb-list/climb-list'
 import './App.css';
 
 class App extends Component {
