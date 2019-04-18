@@ -8,6 +8,8 @@ class ClimbModal extends Component {
             return null;
         }
 
+        console.log(climb);
+
         return (
             <div className={`modal ${this.props.active}`}>
                 <div className="modal-background" onClick={this.props.close}></div>
@@ -20,7 +22,7 @@ class ClimbModal extends Component {
                         </div>
                         <div className="card-content">
                             <div className="title">{climb.name}</div>
-                            <p className="subtitle"><a className="is-size-6" href="https://goo.gl/maps/5EuigxL4tgF2" target="new">39°55'07.4"N 75°23'49.6"W</a></p>
+                            <p className="subtitle"><a className="is-size-6" href={"https://www.google.com/maps/search/?api=1&query=" + climb.coordinates.latitude.toString() + "," + climb.coordinates.longitude.toString()} target="new">{climb.coordinates.latitude}N {climb.coordinates.longitude}W</a></p>
 
                             <div className="content">
                                 <div className="columns">
