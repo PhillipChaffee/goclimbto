@@ -101,7 +101,8 @@ class ClimbList extends Component {
         return (
             <section className="section">
                 <div className="container">
-                    <div className="columns">
+                    <h1 className="title is-2 has-text-centered">Find your next project...</h1>
+                    <div className="columns is-centered">
                         <div className="column is-4">
                             <div className="control has-icons-left has-icons-right">
                                 <input className="input" type="search" onChange={this.search} placeholder="Find a climb" />
@@ -110,8 +111,8 @@ class ClimbList extends Component {
                                 </span>
                             </div>
                         </div>
-                        <div className="column is-1 is-offset-7">
-                            <button className="button is-pulled-right" onClick={() => this.openModal(null)}>+</button>
+                        <div className="column is-1">
+                            <button className="button is-primary" onClick={() => this.openModal(null)}>Add A Climb</button>
                         </div>
                     </div>
                     {climbs}

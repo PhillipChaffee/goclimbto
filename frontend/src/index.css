@@ -1,3 +1,7 @@
 a {
-    color: #87120C;
+    text-decoration: none;
+}
+
+.box {
+    cursor: pointer;
 }

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import ClimbList from './components/climb-list/climb-list'
+import Nav from './components/elements/nav';
+import Footer from './components/elements/footer';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <header className="section">
-          <div className="container has-text-centered">
-            <h1 className="title is-1">Go Climbing To</h1>
-          </div>
-        </header>
+        <Nav />
         <ClimbList />
+        <Footer />
       </div>);
   }
 }
