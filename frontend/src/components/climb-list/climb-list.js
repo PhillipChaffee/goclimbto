@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ClimbBox from './climb-box';
 import ClimbModal from './climb-modal';
 import AddClimbModal from './add-climb-modal';
-import { unwatchFile } from 'fs';
 
 class ClimbList extends Component {
     constructor(props) {
@@ -47,7 +46,7 @@ class ClimbList extends Component {
                 var inCurrentColumn = 0;
                 climbBoxes[i] = [];
                 while (inCurrentColumn < perColumn) {
-                    climbBoxes[i].push(<ClimbBox climb={climbs.shift()} onClick={this.openModal} />)
+                    climbBoxes[i].push(<ClimbBox key={"climbBox" + i} climb={climbs.shift()} onClick={this.openModal} />)
                     inCurrentColumn++;
                 }
             }
@@ -112,7 +111,7 @@ class ClimbList extends Component {
                             </div>
                         </div>
                         <div className="column is-1 is-offset-7">
-                            <a className="button is-pulled-right" onClick={() => this.openModal(null)}>+</a>
+                            <button className="button is-pulled-right" onClick={() => this.openModal(null)}>+</button>
                         </div>
                     </div>
                     {climbs}
@@ -125,7 +124,7 @@ class ClimbList extends Component {
     }
 
     render() {
-        if (this.state.climbBoxes.length == 0) {
+        if (this.state.climbBoxes.length === 0) {
             this.mainLayout(null);
         }
 

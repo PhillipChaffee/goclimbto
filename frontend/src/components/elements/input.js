@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
 class Input extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     getInput() {
         switch (this.props.type) {
-            case "input":
-                return <input className="input" type="text" placeholder={this.props.placeholder} />;
             case "textarea":
-                return <textarea class="textarea" placeholder={this.props.placeholder}></textarea>;
+                return <textarea className="textarea" placeholder={this.props.placeholder}></textarea>;
+            default:
+                return <input className="input" type="text" placeholder={this.props.placeholder} />;
         }
     }
 

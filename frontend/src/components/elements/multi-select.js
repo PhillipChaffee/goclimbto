@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
 class MultiSelect extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     createOption(value) {
-        return <option selected>{value}</option>;
+        return <option key={value.toString()}>{value}</option>;
     }
 
     render() {
@@ -17,10 +13,10 @@ class MultiSelect extends Component {
         }
 
         return (
-            <div class="field">
-                <label class="label">{this.props.name}</label>
-                <p class="control">
-                    <span class="select">
+            <div className="field">
+                <label className="label">{this.props.name}</label>
+                <p className="control">
+                    <span className="select">
                         <select>
                             {options}
                         </select>
