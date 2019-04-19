@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using backend.V1.Db;
 
 namespace backend.V1.Controllers
 {
@@ -7,43 +9,24 @@ namespace backend.V1.Controllers
     [ApiController]
     public class ClimbsController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<Climb>> GetClimbs()
+        private readonly ClimbContext _climbContext;
+
+
+        public ClimbsController(ClimbContext climbContext)
         {
-            return Ok(new List<Climb> { new Climb
-            {
-                Notes = "This climb will bust your butt.",
-                Grade = Grade.V7,
-                Name = "Butt Buster",
-                Location = new Location{Country = "United State", State = "PA", City = "Media"},
-                Rating = 4,
-                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
-            },new Climb
-            {
-                Notes = "This climb will bust your butt.",
-                Grade = Grade.V7,
-                Name = "Butt Whacker",
-                Location = new Location{Country = "United State", State = "PA", City = "Media"},
-                Rating = 4,
-                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
-            },new Climb
-            {
-                Notes = "This climb will bust your butt.",
-                Grade = Grade.V7,
-                Name = "Ass Buster",
-                Location = new Location{Country = "United State", State = "PA", City = "Media"},
-                Rating = 4,
-                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
-            },new Climb
-            {
-                Notes = "This climb will bust your butt.",
-                Grade = Grade.V7,
-                Name = "Supa Climb",
-                Location = new Location{Country = "United State", State = "PA", City = "Media"},
-                Rating = 4,
-                Coordinates = new Coordinate{Latitude = 395507.4, Longitude = 752349.6}
-            } });
+            _climbContext = climbContext;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Climb.Climb>> GetClimbs()
+        {
+            return Ok(_climbContext.Climbs);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> PostClimb([FromBody] Climb.Climb climb)
+        {
+            return Accepted(await _climbContext.AddAsync(climb));
         }
     }
 }

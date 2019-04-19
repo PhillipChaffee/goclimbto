@@ -6,7 +6,7 @@ class Input extends Component {
             case "textarea":
                 return <textarea className="textarea" placeholder={this.props.placeholder}></textarea>;
             default:
-                return <input className="input" type="text" placeholder={this.props.placeholder} />;
+                return <input id={this.props.name.toLowerCase()} className="input" type="text" placeholder={this.props.placeholder} onChange={this.props.onChange} />;
         }
     }
 

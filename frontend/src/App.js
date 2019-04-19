@@ -5,11 +5,36 @@ import Footer from './components/elements/footer';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.getClimbs = this.getClimbs.bind(this);
+
+    this.state = { climbs: [] };
+  }
+
+  async getClimbs() {
+    await fetch("http://localhost:63547/api/v1/Climbs", {
+      headers: { 'Access-Control-Allow-Origin': 'http://localhost:63547' }
+    }).then(response => response.json())
+      .then(data => {
+        this.setState({ climbs: data });
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+  }
+
+  componentDidMount() {
+    this.getClimbs();
+  }
+
   render() {
     return (
       <div>
         <Nav />
-        <ClimbList />
+        <ClimbList climbs={this.state.climbs} />
         <Footer />
       </div>);
   }

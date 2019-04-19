@@ -17,7 +17,7 @@ class MultiSelect extends Component {
                 <label className="label">{this.props.name}</label>
                 <p className="control">
                     <span className="select">
-                        <select>
+                        <select id={this.props.name.toLowerCase()} onChange={this.props.onChange}>
                             {options}
                         </select>
                     </span>

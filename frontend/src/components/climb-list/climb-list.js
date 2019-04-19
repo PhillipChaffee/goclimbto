@@ -16,29 +16,14 @@ class ClimbList extends Component {
         this.loadClimbs = this.loadClimbs.bind(this);
 
         this.state = {
-            climbs: [],
             climbBoxes: [],
             climbModal: this.emptyClimbModal,
             addModal: this.emptyAddModal
         }
     };
 
-    componentDidMount() {
-        fetch("http://localhost:63547/api/v1/Climbs", {
-            headers: { 'Access-Control-Allow-Origin': 'http://localhost:63547' }
-        }).then(response => response.json())
-            .then(data => {
-                this.loadClimbs(data);
-                this.setState({ climbs: data });
-            })
-            .catch((error) => {
-                console.log(error);
-                return error;
-            });
-    }
-
     loadClimbs(climbData) {
-        if (climbData) {
+        if (climbData && climbData.length !== 0) {
             let climbs = climbData.slice();
             let climbBoxes = [];
             let perColumn = climbs.length / 4;
@@ -59,7 +44,7 @@ class ClimbList extends Component {
         let criteria = e.target.value.toLowerCase();
         let results = [];
         let terms = criteria.trim().split(" ");
-        for (let climb of this.state.climbs) {
+        for (let climb of this.props.climbs) {
             let matches = 0;
             let climbString = climb.name + climb.grade + climb.notes + climb.location.city + climb.location.state + climb.location.country;
             climbString = climbString.toLowerCase();
@@ -125,6 +110,8 @@ class ClimbList extends Component {
     }
 
     render() {
+        this.loadClimbs(this.props.climbs);
+
         if (this.state.climbBoxes.length === 0) {
             this.mainLayout(null);
         }
