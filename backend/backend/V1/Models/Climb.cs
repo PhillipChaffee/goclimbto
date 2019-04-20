@@ -1,8 +1,8 @@
-﻿namespace backend.V1.Climb
+﻿namespace backend.V1.Models
 {
     public class Climb
     {
-        public int Id { get; set; }
+        public int ClimbId { get; set; }
         public string Name { get; set; }
         public Location Location { get; set; }
         public Coordinate Coordinates { get; set; } 
