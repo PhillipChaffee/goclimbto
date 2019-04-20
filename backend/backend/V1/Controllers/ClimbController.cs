@@ -26,7 +26,9 @@ namespace backend.V1.Controllers
         [HttpPost]
         public async Task<ActionResult> PostClimb([FromBody] Climb.Climb climb)
         {
-            return Accepted(await _climbContext.AddAsync(climb));
+            var daClimb = climb;
+            var result = await _climbContext.Climbs.AddAsync(daClimb);
+            return Accepted(result);
         }
     }
 }

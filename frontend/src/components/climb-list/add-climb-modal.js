@@ -8,6 +8,7 @@ class AddClimbModal extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.displayImageName = this.displayImageName.bind(this);
+        this.postClimb = this.postClimb.bind(this);
 
         this.state = { imageName: "ClimbPhoto.png" };
     }
@@ -17,15 +18,31 @@ class AddClimbModal extends Component {
     }
 
     async postClimb() {
+        let climb = {
+            Name: this.state.name,
+            Location: { Country: this.state.country, State: this.state.state, City: this.state.city },
+            Coordinates: { Latitude: this.state.latitude, Longitude: this.state.longitude },
+            Grade: this.state.grade,
+            Rating: this.state.rating,
+            Notes: this.state.notes || "",
+            ImageLocation: this.state.imagelocation || ""
+        };
+
+        let postData = JSON.stringify(climb);
+
+        console.log(climb);
+        console.log(postData);
+
         const settings = {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-            }
+            },
+            body: { postData }
         };
 
-        const data = await fetch(`http://localhost:63547/api/v1/Climbs`, settings)
+        const response = await fetch(`http://localhost:63547/api/v1/Climbs`, settings)
             .then(response => response.json())
             .then(json => {
                 return json;
@@ -34,7 +51,9 @@ class AddClimbModal extends Component {
                 return e
             });
 
-        return data;
+        console.log(response);
+
+        return response;
     }
 
     handleChange(event) {
@@ -43,6 +62,8 @@ class AddClimbModal extends Component {
             returnObj[this.target.id] = this.target.value;
             return returnObj;
         }.bind(event)();
+
+        console.log(stateObject);
 
         this.setState(stateObject);
     }
@@ -74,7 +95,8 @@ class AddClimbModal extends Component {
                                     </label>
                                 </div>
                             </div>
-                            <Input type="input" name="Latitude/Longitude" placeholders="ex. 39°55'07.4N 75°23'49.6W" onChange={this.handleChange} />
+                            <Input type="input" name="Latitude" placeholder="ex. 39°55'07.4N" onChange={this.handleChange} />
+                            <Input type="input" name="Longitude" placeholder="ex. 75°23'49.6W" onChange={this.handleChange} />
                             <Input type="input" name="Country" placeholder="USA" onChange={this.handleChange} />
                             <Input type="input" name="State" placeholder="Washington" onChange={this.handleChange} />
                             <Input type="input" name="City" placeholder="Seattle" onChange={this.handleChange} />
@@ -83,7 +105,7 @@ class AddClimbModal extends Component {
                             <Input type="textarea" name="Notes" placeholder="Notes" onChange={this.handleChange} />
                             <div className="field is-grouped">
                                 <div className="control">
-                                    <button className="button is-link">Add</button>
+                                    <button className="button is-link" onClick={this.postClimb}>Add</button>
                                 </div>
                             </div>
                         </div>
