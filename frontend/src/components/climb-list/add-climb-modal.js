@@ -18,42 +18,41 @@ class AddClimbModal extends Component {
     }
 
     async postClimb() {
-        let climb = {
-            Name: this.state.name,
-            Location: { Country: this.state.country, State: this.state.state, City: this.state.city },
-            Coordinates: { Latitude: this.state.latitude, Longitude: this.state.longitude },
-            Grade: this.state.grade,
-            Rating: this.state.rating,
-            Notes: this.state.notes || "",
-            ImageLocation: this.state.imagelocation || ""
-        };
-
-        let postData = JSON.stringify(climb);
-
-        console.log(climb);
-        console.log(postData);
-
-        const settings = {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: { postData }
-        };
-
-        const response = await fetch(`http://localhost:63547/api/v1/Climbs`, settings)
-            .then(response => response.json())
-            .then(json => {
-                return json;
-            })
-            .catch(e => {
+        fetch('http://localhost:63547/api/v1/Image/' + this.state.imageName,
+            {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Access-Control-Allow-Origin': 'http://localhost:63547'
+                },
+                body: this.state.image
+            }).catch(e => {
                 return e
             });
 
-        console.log(response);
+        let climb = {
+            Id: 0,
+            Name: this.state.name,
+            Location: { Id: 0, Country: this.state.country, State: this.state.state, City: this.state.city },
+            Coordinates: { Id: 0, Latitude: parseFloat(this.state.latitude), Longitude: parseFloat(this.state.longitude) },
+            Grade: this.state.grade,
+            Rating: parseInt(this.state.rating),
+            Notes: this.state.notes,
+            ImageLocation: this.state.imageName
+        };
 
-        return response;
+        const settings = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                Accept: 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:63547',
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(climb)
+        };
+
+        fetch(`http://localhost:63547/api/v1/Climbs`, settings);
     }
 
     handleChange(event) {
@@ -62,8 +61,6 @@ class AddClimbModal extends Component {
             returnObj[this.target.id] = this.target.value;
             return returnObj;
         }.bind(event)();
-
-        console.log(stateObject);
 
         this.setState(stateObject);
     }

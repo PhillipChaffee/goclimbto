@@ -27,7 +27,7 @@ namespace backend.V1.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Climb), 204)]
+        [ProducesResponseType(typeof(Climb), 201)]
         public async Task<ActionResult<Climb>> PostClimb([FromBody] Climb climb)
         {
             await _climbContext.Climbs.AddAsync(climb);

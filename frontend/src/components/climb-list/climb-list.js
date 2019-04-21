@@ -109,9 +109,13 @@ class ClimbList extends Component {
         );
     }
 
-    render() {
-        this.loadClimbs(this.props.climbs);
+    componentDidUpdate(prevProps) {
+        if (this.props.climbs.length !== 0 && (prevProps.climbs.length !== this.props.climbs.length || prevProps.climbs[0].Name != this.props.climbs[0].Name)) {
+            this.loadClimbs(this.props.climbs);
+        }
+    }
 
+    render() {
         if (this.state.climbBoxes.length === 0) {
             this.mainLayout(null);
         }
