@@ -49,7 +49,7 @@ class ClimbModal extends Component {
                                         </div>
                                     </div>
                                     <div className="column">
-                                        <p>Notes</p>
+                                        <p className="notes">Notes</p>
                                         <p>{climb.notes}</p>
                                     </div>
                                 </div>

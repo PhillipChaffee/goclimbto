@@ -6,7 +6,7 @@ class Nav extends Component {
             <div className="container">
                 <div className="navbar-brand">
                     <div className="navbar-item">
-                        <a href="/" style={{ color: "black" }} className="is-size-2 has-text-weight-semibold">Go Climb To</a>
+                        <a href="/" style={{ color: "black" }} className="is-size-2 has-text-weight-semibold">Go Climbing To</a>
                     </div>
                 </div>
                 <div className="navbar-menu">

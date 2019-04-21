@@ -26,14 +26,17 @@ class ClimbList extends Component {
         if (climbData && climbData.length !== 0) {
             let climbs = climbData.slice();
             let climbBoxes = [];
-            let perColumn = climbs.length / 4;
-            for (var i = 0; i < 4; i++) {
-                var inCurrentColumn = 0;
-                climbBoxes[i] = [];
-                while (inCurrentColumn < perColumn) {
-                    climbBoxes[i].push(<ClimbBox key={"climbBox" + i} climb={climbs.shift()} onClick={this.openModal} />)
-                    inCurrentColumn++;
+
+            let row = 0;
+            while (climbs.length > 0) {
+                climbBoxes[row] = [];
+
+                let inCurrentRow = 0;
+                while (inCurrentRow < 4 && climbs.length > 0) {
+                    climbBoxes[row].push(<ClimbBox key={"climbBox" + row + inCurrentRow} climb={climbs.shift()} onClick={this.openModal} />)
+                    inCurrentRow++;
                 }
+                row++;
             }
 
             this.setState({ climbBoxes: climbBoxes });
@@ -100,7 +103,9 @@ class ClimbList extends Component {
                             <button className="button is-primary" onClick={() => this.openModal(null)}>Add A Climb</button>
                         </div>
                     </div>
-                    {climbs}
+                    <div className="tile is-ancestor is-vertical">
+                        {climbs}
+                    </div>
                 </div>
 
                 {this.state.climbModal}
@@ -117,16 +122,16 @@ class ClimbList extends Component {
 
     render() {
         if (this.state.climbBoxes.length === 0) {
-            this.mainLayout(null);
+            return this.mainLayout(null);
         }
 
         let climbBoxes = this.state.climbBoxes;
-        let climbs = <div className="columns">
-            <div className="column">{climbBoxes[0]}</div>
-            <div className="column">{climbBoxes[1]}</div>
-            <div className="column">{climbBoxes[2]}</div>
-            <div className="column">{climbBoxes[3]}</div>
-        </div>;
+        let climbs = [];
+
+        let i;
+        for (i = 0; i < climbBoxes.length; i++) {
+            climbs.push(<div key={i} className="tile is-parent">{climbBoxes[i]}</div>);
+        }
 
         return (
             this.mainLayout(climbs)
