@@ -4,9 +4,9 @@ class Input extends Component {
     getInput() {
         switch (this.props.type) {
             case "textarea":
-                return <textarea id={this.props.name.toLowerCase()} className="textarea" placeholder={this.props.placeholder} onChange={this.props.onChange}></textarea>;
+                return <textarea id={this.props.name.toLowerCase()} value={this.props.value} className="textarea" placeholder={this.props.placeholder} onChange={this.props.onChange}></textarea>;
             default:
-                return <input id={this.props.name.toLowerCase()} className="input" type="text" placeholder={this.props.placeholder} onChange={this.props.onChange} />;
+                return <input id={this.props.name.toLowerCase()} value={this.props.value} className="input" type="text" placeholder={this.props.placeholder} onChange={this.props.onChange} />;
         }
     }
 

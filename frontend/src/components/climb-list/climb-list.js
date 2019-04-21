@@ -110,7 +110,7 @@ class ClimbList extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.climbs.length !== 0 && (prevProps.climbs.length !== this.props.climbs.length || prevProps.climbs[0].Name != this.props.climbs[0].Name)) {
+        if (this.props.climbs.length !== 0 && (prevProps.climbs.length !== this.props.climbs.length || prevProps.climbs[0].Name !== this.props.climbs[0].Name)) {
             this.loadClimbs(this.props.climbs);
         }
     }
