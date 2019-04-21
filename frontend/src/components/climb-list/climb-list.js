@@ -134,6 +134,4 @@ class ClimbList extends Component {
     }
 }
 
-
-
 export default ClimbList;

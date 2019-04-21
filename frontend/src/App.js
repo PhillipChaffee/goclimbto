@@ -13,8 +13,8 @@ class App extends Component {
     this.state = { climbs: [] };
   }
 
-  async getClimbs() {
-    await fetch("http://localhost:63547/api/v1/Climbs", {
+  getClimbs() {
+    fetch("http://localhost:63547/api/v1/Climbs", {
       headers: { 'Access-Control-Allow-Origin': 'http://localhost:63547' }
     }).then(response => response.json())
       .then(data => {

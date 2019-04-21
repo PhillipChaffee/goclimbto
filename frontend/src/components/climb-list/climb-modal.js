@@ -8,7 +8,7 @@ class ClimbModal extends Component {
             return null;
         }
 
-        console.log(climb);
+        let imageUrl = encodeURI("http://localhost:8080/" + this.props.climb.name + ".jpg");
 
         return (
             <div className={`modal ${this.props.active}`}>
@@ -17,7 +17,7 @@ class ClimbModal extends Component {
                     <div className="card">
                         <div className="card-image">
                             <figure className="image is-4by3">
-                                <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Frereno2.files.wordpress.com%2F2014%2F09%2Fboulder.jpg" alt="Placeholder" />
+                                <img src={imageUrl} alt="Placeholder" />
                             </figure>
                         </div>
                         <div className="card-content">

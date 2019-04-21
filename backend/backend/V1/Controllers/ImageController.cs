@@ -14,15 +14,6 @@ namespace backend.V1.Controllers
     [ApiController]
     public class ImageController : Controller
     {
-
-        [HttpGet("{name}")]
-        [ProducesResponseType(200)]
-        public ActionResult<Image> GetImage([FromRoute] string name)
-        {
-            var fileName = "C:/climbImages/" + name;
-            return Image.FromFile(fileName);
-        }
-
         [HttpPost("{name}")]
         [ProducesResponseType(typeof(string), 201)]
         public ActionResult<string> PostImage([FromRoute] string name)

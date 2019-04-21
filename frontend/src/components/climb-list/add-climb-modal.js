@@ -14,11 +14,11 @@ class AddClimbModal extends Component {
     }
 
     displayImageName(e) {
-        this.setState({ imageName: e.target.files[0].name, image: e.target.files[0] });
+        this.setState({ imageName: e.target.files[0].name, image: e.target.files[0] })
     }
 
     async postClimb() {
-        fetch('http://localhost:63547/api/v1/Image/' + this.state.imageName,
+        fetch('http://localhost:63547/api/v1/Image/' + this.state.name + '.' + this.state.image.name.split('.')[1],
             {
                 method: 'POST',
                 mode: 'cors',
@@ -37,8 +37,7 @@ class AddClimbModal extends Component {
             Coordinates: { Id: 0, Latitude: parseFloat(this.state.latitude), Longitude: parseFloat(this.state.longitude) },
             Grade: this.state.grade,
             Rating: parseInt(this.state.rating),
-            Notes: this.state.notes,
-            ImageLocation: this.state.imageName
+            Notes: this.state.notes
         };
 
         const settings = {
@@ -92,8 +91,8 @@ class AddClimbModal extends Component {
                                     </label>
                                 </div>
                             </div>
-                            <Input type="input" name="Latitude" placeholder="ex. 39°55'07.4N" onChange={this.handleChange} />
-                            <Input type="input" name="Longitude" placeholder="ex. 75°23'49.6W" onChange={this.handleChange} />
+                            <Input type="input" name="Latitude" placeholder="ex. 37.3291" onChange={this.handleChange} />
+                            <Input type="input" name="Longitude" placeholder="ex. -118.57493" onChange={this.handleChange} />
                             <Input type="input" name="Country" placeholder="USA" onChange={this.handleChange} />
                             <Input type="input" name="State" placeholder="Washington" onChange={this.handleChange} />
                             <Input type="input" name="City" placeholder="Seattle" onChange={this.handleChange} />
