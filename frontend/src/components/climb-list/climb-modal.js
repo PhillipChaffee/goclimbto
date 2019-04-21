@@ -15,9 +15,9 @@ class ClimbModal extends Component {
                 <div className="modal-background" onClick={this.props.close}></div>
                 <div className="modal-content">
                     <div className="card">
-                        <div className="card-image">
-                            <figure className="image is-4by3">
-                                <img src={imageUrl} alt="Placeholder" />
+                        <div className="card-image has-background-black">
+                            <figure className="image">
+                                <img className="climbImage" src={imageUrl} alt="Placeholder" />
                             </figure>
                         </div>
                         <div className="card-content">
