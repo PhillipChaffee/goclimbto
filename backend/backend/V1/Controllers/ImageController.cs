@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend.V1.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ImageController : Controller
     {
@@ -19,7 +19,7 @@ namespace backend.V1.Controllers
         public ActionResult<string> PostImage([FromRoute] string name)
         {
             var image = Image.FromStream(Request.Body);
-            var fileName = "C:/climbImages/" + name;
+            var fileName = "/var/www/climbImages/" + name;
             image.Save(fileName);
             return CreatedAtAction(nameof(PostImage), fileName);
         }

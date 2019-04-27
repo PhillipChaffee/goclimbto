@@ -25,14 +25,7 @@ namespace backend
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("_myAllowSpecificOrigins",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
-                    });
-            });
+            services.AddCors();
 
             //Swagger
             services.AddSwaggerGen(c =>
@@ -54,7 +47,7 @@ namespace backend
                 app.UseHttpsRedirection();
             }
 
-            app.UseCors("_myAllowSpecificOrigins");
+            app.UseCors();
 
             //Swagger
             app.UseSwagger();

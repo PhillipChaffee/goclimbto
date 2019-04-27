@@ -102,7 +102,7 @@ class AddClimbModal extends Component {
                 return value !== undefined && value.trim() !== "" && typeof (float) == 'number' && value.includes('.');
 
             case "image-div":
-                return this.state.image !== undefined;
+                return this.state.image !== undefined && this.state.image.type === 'image/jpeg';
 
             case "notes":
                 return true;
@@ -156,7 +156,7 @@ class AddClimbModal extends Component {
                                         </span>
                                     </label>
                                 </div>
-                                <p class="help">Please use the jpeg file format.</p>
+                                <p className="help">Please use the jpeg file format.</p>
                             </div>
                             <Input type="input" value={this.state.latitude} name="Latitude" placeholder="ex. 37.3291" onChange={this.handleChange} />
                             <Input type="input" value={this.state.longitude} name="Longitude" placeholder="ex. -118.57493" onChange={this.handleChange} />

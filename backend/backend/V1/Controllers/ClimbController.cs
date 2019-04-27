@@ -7,7 +7,7 @@ using backend.V1.Models;
 
 namespace backend.V1.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ClimbsController : ControllerBase
     {
