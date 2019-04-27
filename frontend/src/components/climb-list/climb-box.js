@@ -7,7 +7,7 @@ class ClimbBox extends Component {
             return null;
         }
 
-        let imageUrl = encodeURI("http://localhost:8080/" + this.props.climb.name + ".jpg");
+        let imageUrl = encodeURI("http://goclimbing.to/images/" + this.props.climb.name + ".jpg");
 
         return (
             <div className='tile is-3 is-parent' onClick={() => this.props.onClick(this.props.climb)}>
