@@ -14,9 +14,8 @@ class App extends Component {
   }
 
   getClimbs() {
-    fetch("http://localhost:63547/api/v1/Climbs", {
-      headers: { 'Access-Control-Allow-Origin': 'http://localhost:63547' }
-    }).then(response => response.json())
+    fetch("https://goclimbing.to/api/v1/Climbs")
+      .then(response => response.json())
       .then(data => {
         this.setState({ climbs: data });
       })

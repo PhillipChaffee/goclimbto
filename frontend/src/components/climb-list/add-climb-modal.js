@@ -12,7 +12,7 @@ class AddClimbModal extends Component {
         this.valildateInput.bind(this);
         this.resetState.bind(this);
 
-        this.state = { imageName: "ClimbPhoto.png" };
+        this.state = { imageName: "ClimbPhoto.jpg" };
     }
 
     resetState() {
@@ -44,13 +44,10 @@ class AddClimbModal extends Component {
             return;
         }
 
-        fetch('http://localhost:63547/api/v1/Image/' + this.state.name + '.jpg',
+        fetch('https://goclimbing.to/api/v1/Image/' + this.state.name + '.jpg',
             {
                 method: 'POST',
                 mode: 'cors',
-                headers: {
-                    'Access-Control-Allow-Origin': 'http://localhost:63547'
-                },
                 body: this.state.image
             }).catch(e => {
                 return e
@@ -71,13 +68,12 @@ class AddClimbModal extends Component {
             mode: 'cors',
             headers: {
                 Accept: 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:63547',
                 'Content-Type': 'application/json; charset=utf-8',
             },
             body: JSON.stringify(climb)
         };
 
-        fetch(`http://localhost:63547/api/v1/Climbs`, settings);
+        fetch(`https://goclimbing.to/api/v1/Climbs`, settings);
         this.props.close();
         this.resetState();
     }
@@ -160,6 +156,7 @@ class AddClimbModal extends Component {
                                         </span>
                                     </label>
                                 </div>
+                                <p class="help">Please use the jpeg file format.</p>
                             </div>
                             <Input type="input" value={this.state.latitude} name="Latitude" placeholder="ex. 37.3291" onChange={this.handleChange} />
                             <Input type="input" value={this.state.longitude} name="Longitude" placeholder="ex. -118.57493" onChange={this.handleChange} />
