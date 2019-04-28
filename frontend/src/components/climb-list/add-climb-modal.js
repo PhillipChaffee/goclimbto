@@ -44,7 +44,7 @@ class AddClimbModal extends Component {
             return;
         }
 
-        fetch('https://goclimbing.to/api/v1/Image/' + this.state.name + '.jpg',
+        fetch('https://goclimbing.to/api/v1/Image/' + this.state.name + this.state.latitude + this.state.longitude + '.jpg',
             {
                 method: 'POST',
                 mode: 'cors',

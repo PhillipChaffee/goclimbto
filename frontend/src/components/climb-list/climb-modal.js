@@ -8,7 +8,7 @@ class ClimbModal extends Component {
             return null;
         }
 
-        let imageUrl = encodeURI("https://goclimbing.to/images/" + this.props.climb.name + ".jpg");
+        let imageUrl = encodeURI("https://goclimbing.to/images/" + this.props.climb.name + this.props.climb.latitude + this.props.climb.longitude + ".jpg");
 
         return (
             <div className={`modal ${this.props.active}`}>
